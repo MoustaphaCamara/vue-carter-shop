@@ -58,34 +58,50 @@
         </div>
       </div>
       <!-- cart display -->
-      <div v-if="cart.length > 0" class="shopping-cart" id="shopping-cart">
-        <h2>Panier</h2>
-        <div class="item-group">
-          <div v-for="product in cart" :key="product.id" class="item">
-            <div class="img-container">
-              <img :src="product.img" :alt="product.description" />
-            </div>
-            <div class="item-description">
-              <h4>{{ product.description }}</h4>
-              <p>{{ product.price }}€</p>
-            </div>
-            <div class="item-quantity">
-              <h6>quantité : {{ product.quantity }}</h6>
-              <div class="cart-icons">
-                <button @click="addQuantity(product)">
-                  <i class="fa fa-plus"></i>
-                </button>
-                <button @click="reduce(product)">
-                  <i class="fa fa-minus"></i>
-                </button>
-                <button @click="remove(product)">
-                  <i class="fa fa-trash"></i>
-                </button>
+      <transition name="cart-anim">
+        <div v-if="cart.length > 0" class="shopping-cart" id="shopping-cart">
+          <h2>Panier</h2>
+          <transition-group name="item-anim" tag="div" class="item-group">
+            <!-- each product in cart -->
+            <div v-for="product in cart" :key="product.id" class="item">
+              <div class="img-container">
+                <img :src="product.img" :alt="product.description" />
+              </div>
+              <div class="item-description">
+                <h4>{{ product.description }}</h4>
+                <p>{{ product.price }}€</p>
+              </div>
+              <div class="item-quantity">
+                <h6>quantité : {{ product.quantity }}</h6>
+                <!-- cart icons -->
+                <div class="cart-icons">
+                  <button @click="addQuantity(product)">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                  <button @click="reduce(product)">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <button @click="remove(product)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+                <!-- end of cart icons -->
               </div>
             </div>
+            <!-- end of each product -->
+          </transition-group>
+          <!-- total -->
+          <div class="grand-total">
+            <div class="total">
+              <h2>Total</h2>
+              <h2>{{ totalAmount }} €</h2>
+            </div>
+            <h6>Total articles : {{ totalItems }}</h6>
           </div>
+          <!-- end of total -->
         </div>
-      </div>
+        <!-- end of cart display -->
+      </transition>
     </div>
   </div>
 </template>
@@ -101,6 +117,8 @@ export default {
       searchKey: "",
       liked: [],
       cart: [],
+      totalAmount: 0,
+      totalItems: 0,
     };
   },
   computed: {
@@ -110,6 +128,21 @@ export default {
           .toLowerCase()
           .includes(this.searchKey.toLowerCase());
       });
+    },
+    cartTotalAmount() {
+      this.totalAmount = 0;
+      for (let item in this.cart) {
+        this.totalAmount =
+          this.totalAmount + this.cart[item].quantity * this.cart[item].price;
+      }
+      return this.totalAmount;
+    },
+    cartTotalItems() {
+      this.totalItems = 0;
+      for (let item in this.cart) {
+        this.totalItems = this.totalItems + this.cart[item].quantity;
+      }
+      return this.totalItems;
     },
   },
   methods: {
