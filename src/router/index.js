@@ -3,12 +3,14 @@ import HomePage from "../components/HomePage.vue";
 import UserSettings from "../components/UserSettings.vue";
 import WishList from "../components/WishList.vue";
 import ShoppingCart from "../components/ShoppingCart.vue";
+import Manga from "../components/Manga.vue";
 
 const routes = [
-  { path: "/", component: HomePage },
-  { path: "/user-settings", component: UserSettings },
-  { path: "/wish-list", component: WishList },
-  { path: "/shopping-cart", component: ShoppingCart },
+  { path: "/", component: HomePage, props: true },
+  { path: "/user-settings", component: UserSettings, props: true },
+  { path: "/wish-list", component: WishList, props: true },
+  { path: "/shopping-cart", component: ShoppingCart, props: true },
+  { path: "/manga/:id", component: Manga, props: true },
 ];
 
 const router = createRouter({

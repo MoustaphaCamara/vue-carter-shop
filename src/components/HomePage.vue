@@ -9,7 +9,8 @@
       placeholder="Effectuez une recherche..."
       autocomplete="off"
     />
-
+    <WishList :liked="liked" :productList="productList" :getManga="getManga" />
+    <br />
     <span v-if="searchKey && filteredList.length >= 1">
       {{ filteredList.length }} résultat<span v-if="filteredList.length >= 2"
         >s</span
@@ -24,12 +25,13 @@
           :key="product.id"
         >
           <!-- image -->
-          <div class="img-container">
-            <img v-bind:src="product.img" :alt="product.description" />
+          <!-- getManga -> j'appelle router link en fonction $this.router.push et je peux passer mes paramètres -->
+          <div class="img-container" @click="getManga(product)">
+            <img v-bind:src="product.img" :alt="product.title" />
           </div>
           <!-- texte -->
           <div class="card-text">
-            <h3>{{ product.description }}</h3>
+            <h3>{{ product.title }}</h3>
             <span>{{ product.price }}€ </span>
           </div>
           <!-- buttons -->
@@ -65,10 +67,10 @@
             <!-- each product in cart -->
             <div v-for="product in cart" :key="product.id" class="item">
               <div class="img-container">
-                <img :src="product.img" :alt="product.description" />
+                <img :src="product.img" :alt="product.title" />
               </div>
-              <div class="item-description">
-                <h4>{{ product.description }}</h4>
+              <div class="item-title">
+                <h4>{{ product.title }}</h4>
                 <p>{{ product.price }}€</p>
               </div>
               <div class="item-quantity">
@@ -94,7 +96,7 @@
           <div class="grand-total">
             <div class="total">
               <h2>Total</h2>
-              <h2>{{ totalAmount }} €</h2>
+              <h2>{{ totalAmount.toFixed(2) }} €</h2>
             </div>
             <h6>Total articles : {{ totalItems }}</h6>
           </div>
@@ -109,8 +111,15 @@
 <script>
 import axios from "axios";
 import addRedDot from "../js/redDot";
+import WishList from "./WishList.vue";
+
 export default {
+  components: { WishList },
   name: "HomePage",
+  props: {
+    liked: Array,
+    productList: Array,
+  },
   data() {
     return {
       productList: null,
@@ -124,11 +133,13 @@ export default {
   computed: {
     filteredList() {
       return this.productList.filter((product) => {
-        return product.description
+        return product.title
           .toLowerCase()
           .includes(this.searchKey.toLowerCase());
       });
     },
+  },
+  methods: {
     cartTotalAmount() {
       this.totalAmount = 0;
       for (let item in this.cart) {
@@ -144,13 +155,24 @@ export default {
       }
       return this.totalItems;
     },
-  },
-  methods: {
+    // push to Manga component with its id and description
+    getManga(product) {
+      this.$router.push({
+        path: "/manga/" + product.id,
+        query: {
+          mangaTitle: product.title,
+          description: product.description,
+          img: product.img,
+        },
+      });
+    },
+    // fetch mangas
     fetchProducts() {
       axios
         .get("/src/js/products.json")
         .then((res) => (this.productList = res.data.products));
     },
+    // add a new manga to cart
     addToCart(product) {
       // check if already in cart
       for (let i = 0; i < this.cart.length; i++) {
@@ -161,11 +183,12 @@ export default {
       this.cart.push({
         id: product.id,
         img: product.img,
-        description: product.description,
+        title: product.title,
         price: product.price,
         quantity: 1,
       });
     },
+    // quantity actions (+,-,delete)
     addQuantity(product) {
       product.quantity = product.quantity + 1;
     },

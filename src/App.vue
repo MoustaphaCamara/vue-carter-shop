@@ -3,7 +3,7 @@
     <div class="nav-container">
       <div id="logo">
         <router-link to="/">
-          <img src="src/assets/img/logo-carter.jpg" alt="logo" />
+          <img src="src/assets/img/logo.jpg" alt="logo" />
         </router-link>
       </div>
       <ul id="icons">
@@ -12,12 +12,12 @@
             <i class="fas fa-user"></i>
           </router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link to="/wish-list">
             <i class="fas fa-heart"></i>
+            <span id="nav-not"></span>
           </router-link>
-          <span id="nav-not"></span>
-        </li>
+        </li> -->
         <li>
           <router-link to="/shopping-cart">
             <i class="fas fa-shopping-cart"></i>
@@ -28,4 +28,3 @@
   </nav>
   <router-view></router-view>
 </template>
-<style scoped></style>
