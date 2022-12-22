@@ -396,7 +396,17 @@ h6 {
   transform: translateY(100px);
   transition: 0.7s;
 }
-
+#nav-not {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: rgb(255, 41, 41);
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.6s;
+  transform: translate(-4px, 17px);
+}
 @keyframes scaler {
   50% {
     transform: scale(1.1);

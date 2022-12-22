@@ -1,5 +1,8 @@
 <template>
-  <h2 @click="displayFavs()"><i class="fas fa-heart"></i> Liste de favoris</h2>
+  <h2 @click="displayFavs()">
+    Liste de favoris <i class="fas fa-heart"></i><span id="nav-not"></span>
+  </h2>
+
   <div id="parent">
     <div
       class="fav-container"
@@ -20,6 +23,8 @@
 </template>
 
 <script>
+import addRedDot from "../js/redDot";
+
 export default {
   name: "WishList",
   props: {
@@ -32,6 +37,10 @@ export default {
       let favs = document.getElementById("parent");
       favs.classList.toggle("displayed");
     },
+  },
+  mounted() {
+    addRedDot();
+    // bug à check : quand je reload la page, même quitter navigateur éteindre pc et revenir, le red dot fonctionne et cookies sont là. Mais quand je change de component, red dot disparait et ne revient pas qd je reviens sur homepage, faut refresh page..
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <h1>Articles</h1>
+    <h1>MangaList</h1>
     <!-- search display -->
     <input
       v-model="searchKey"
@@ -110,7 +110,6 @@
 
 <script>
 import axios from "axios";
-import addRedDot from "../js/redDot";
 import WishList from "./WishList.vue";
 
 export default {
@@ -218,8 +217,6 @@ export default {
       // il a fallu passer un array splité pcq sinon ça me retourne true/False et tous les liked sont cochés
       // liked est bindé => c'est la value (product.id) qui est concaténée(,)
     }
-    addRedDot();
-    // bug à check : quand je reload la page, même quitter navigateur éteindre pc et revenir, le red dot fonctionne et cookies sont là. Mais quand je change de component, red dot disparait et ne revient pas qd je reviens sur homepage, faut refresh page..
   },
   watch: {
     liked(newItem) {

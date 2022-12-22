@@ -8,8 +8,8 @@
       </div>
       <ul id="icons">
         <li>
-          <router-link to="/user-settings">
-            <i class="fas fa-user"></i>
+          <router-link to="/infos">
+            <i class="fa-solid fa-file-lines"></i>
           </router-link>
         </li>
         <!-- <li>
@@ -18,11 +18,11 @@
             <span id="nav-not"></span>
           </router-link>
         </li> -->
-        <li>
+        <!-- <li>
           <router-link to="/shopping-cart">
             <i class="fas fa-shopping-cart"></i>
           </router-link>
-        </li>
+        </li> -->
       </ul>
     </div>
   </nav>

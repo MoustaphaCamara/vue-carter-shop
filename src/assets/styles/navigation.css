@@ -35,17 +35,7 @@ nav .nav-container #icons li {
 nav .nav-container #icons li a {
   position: relative;
 }
-nav .nav-container #icons #nav-not {
-  height: 8px;
-  width: 8px;
-  border-radius: 50%;
-  background: rgb(255, 41, 41);
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.6s;
-  transform: translate(-4px, -1px);
-}
+
 nav .nav-container #icons i {
   transition: 0.25s;
   cursor: pointer;
