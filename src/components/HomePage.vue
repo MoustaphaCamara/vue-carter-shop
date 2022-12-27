@@ -2,6 +2,7 @@
   <div class="home-container">
     <h1>MangaList</h1>
     <!-- search display -->
+
     <input
       v-model="searchKey"
       type="search"
@@ -48,7 +49,9 @@
               </label>
             </div>
             <div class="add-to-cart">
-              <button @click="addToCart(product)">
+              <button
+                @click="addToCart(product), cartTotalAmount(), cartTotalItems()"
+              >
                 <i class="fas fa-shopping-cart"></i>
               </button>
             </div>
@@ -146,6 +149,7 @@ export default {
           this.totalAmount + this.cart[item].quantity * this.cart[item].price;
       }
       return this.totalAmount;
+      this.cartTotalItems();
     },
     cartTotalItems() {
       this.totalItems = 0;
@@ -153,6 +157,7 @@ export default {
         this.totalItems = this.totalItems + this.cart[item].quantity;
       }
       return this.totalItems;
+      this.cartTotalAmount();
     },
     // push to Manga component with its id and description
     getManga(product) {
@@ -190,6 +195,8 @@ export default {
     // quantity actions (+,-,delete)
     addQuantity(product) {
       product.quantity = product.quantity + 1;
+      this.cartTotalAmount();
+      this.cartTotalItems();
     },
     reduce(product) {
       if (product.quantity < 2) {
@@ -197,6 +204,8 @@ export default {
       } else {
         product.quantity = product.quantity - 1;
       }
+      this.cartTotalAmount();
+      this.cartTotalItems();
     },
     remove(product) {
       if (confirm("Supprimer cet article?")) {
@@ -208,6 +217,8 @@ export default {
           }
         }
       }
+      this.cartTotalAmount();
+      this.cartTotalItems();
     },
   },
   mounted() {
