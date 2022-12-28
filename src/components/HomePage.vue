@@ -2,6 +2,7 @@
   <div class="home-container">
     <h1>MangaList</h1>
     <!-- search display -->
+    <p class="notice">Desktop version only</p>
 
     <input
       v-model="searchKey"
@@ -17,6 +18,7 @@
         >s</span
       >
     </span>
+    <p class="notice">Clique sur un manga pour avoir plus d'infos</p>
     <!-- card display -->
     <div class="card-cart-container">
       <div class="card-container">

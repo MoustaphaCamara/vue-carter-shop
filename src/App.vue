@@ -28,3 +28,9 @@
   </nav>
   <router-view></router-view>
 </template>
+<style>
+*::selection {
+  background: orangered;
+  color: blue;
+}
+</style>

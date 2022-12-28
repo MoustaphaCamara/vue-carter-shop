@@ -4,6 +4,7 @@
   </h2>
 
   <div id="parent">
+    <p v-if="liked.length < 1">Aucun favoris ajouté..</p>
     <div
       class="fav-container"
       id="fav-container"

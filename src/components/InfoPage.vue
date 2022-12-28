@@ -52,10 +52,13 @@ export default {
   background-color: #809dac;
   background-image: linear-gradient(135deg, #809dac 0%, #090f47 100%);
 }
-/* .info:hover {
+.info:hover {
   box-shadow: inset 0 0 30px black;
   transform: translateY(-5px);
-} */
+}
+h1 {
+  text-align: center;
+}
 h3 {
   margin-bottom: 8px;
 }
