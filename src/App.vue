@@ -3,7 +3,7 @@
     <div class="nav-container">
       <div id="logo">
         <router-link to="/">
-          <img src="src/assets/img/logo.jpg" alt="logo" />
+          <img src="https://i.ibb.co/56KJZkm/logo.jpg" alt="logo" />
         </router-link>
       </div>
       <ul id="icons">

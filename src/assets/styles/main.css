@@ -104,18 +104,17 @@
 .home-container .card-cart-container .card-container .card .card-icons i:hover {
   animation: scaler 0.8s infinite linear;
 }
-.notice:nth-of-type(2) {
+.notice {
   color: gray;
-  animation: disappear 2s linear forwards;
-  animation-delay: 5s;
 }
 .notice:first-of-type {
-  color: lightgray;
   font-style: italic;
   font-size: 0.8rem;
   text-align: center;
+}
+.notice:nth-of-type(2) {
   animation: disappear 2s linear forwards;
-  animation-delay: 8s;
+  animation-delay: 5s;
 }
 @keyframes disappear {
   to {
@@ -123,6 +122,7 @@
     opacity: 0;
   }
 }
+
 .home-container
   .card-cart-container
   .card-container
