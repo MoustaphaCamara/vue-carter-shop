@@ -174,9 +174,17 @@ export default {
     },
     // fetch mangas
     fetchProducts() {
+      const url = "https://moustaphacamara.fr/json/index.php";
       axios
-        .get("/src/js/products.json")
+        .get(url, {
+          headers: {
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
         .then((res) => (this.productList = res.data.products));
+      //if in local :
+      // axios.get("../js/products.json").then((res) => (this.productList = res.data.products));
     },
     // add a new manga to cart
     addToCart(product) {
