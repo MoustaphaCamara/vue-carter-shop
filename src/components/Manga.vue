@@ -1,6 +1,6 @@
 <template>
   <div class="manga-container">
-    <img class="manga-cover" :src="'../' + this.img" :alt="this.mangaTitle" />
+    <img class="manga-cover" :src="this.img" :alt="this.mangaTitle" />
     <div class="manga-description">
       <h2>{{ title }}</h2>
       <h3>Synopsis :</h3>
